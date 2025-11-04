@@ -1,6 +1,6 @@
 # --- Ventana ---
-SCREEN_WIDTH = 960
-SCREEN_HEIGHT = 540
+SCREEN_WIDTH = 1920
+SCREEN_HEIGHT = 1080
 FPS = 60
 TITLE = "Dead Cells Like - Prototype"
 
