@@ -1,10 +1,11 @@
 import pygame
 from game import Game
+from settings import *
 
 def main():
     pygame.init()
-    pygame.display.set_caption("Dead Cells Clone")
-    screen = pygame.display.set_mode((1280, 720))
+    pygame.display.set_caption(TITLE)
+    screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
     clock = pygame.time.Clock()
 
     game = Game(screen)
@@ -19,7 +20,7 @@ def main():
         game.draw()
 
         pygame.display.flip()
-        clock.tick(60)
+        clock.tick(FPS)
 
     pygame.quit()
 

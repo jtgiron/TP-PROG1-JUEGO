@@ -12,7 +12,3 @@ GREEN = (50, 255, 50)
 BLUE  = (50, 50, 255)
 GRAY  = (100, 100, 100)
 
-# --- Jugador ---
-PLAYER_SPEED = 5
-PLAYER_START_X = 100
-PLAYER_START_Y = 400

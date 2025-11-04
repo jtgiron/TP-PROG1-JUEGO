@@ -10,7 +10,7 @@ class Game:
         self.all_sprites = pygame.sprite.Group()
 
         # Crear jugador
-        self.player = Player(x=100, y=500)
+        self.player = Player(x=200, y=600)
         self.all_sprites.add(self.player)
 
     def update(self):

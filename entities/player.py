@@ -19,7 +19,8 @@ class Player(pygame.sprite.Sprite):
         self.jump_force = -15
         self.gravity = 0.8
         self.on_ground = False
-
+        self.facing_right = True
+        
     def load_animations(self):
         # Cargar imagenes para las animaciones
         animations =  {}
@@ -39,8 +40,7 @@ class Player(pygame.sprite.Sprite):
     def update(self, keys):
         self.handle_input(keys)
         self.apply_gravity()
-        self.animate()  # Llamar a la animación para actualizar los frames
-
+        self.animate()  
         # Movimiento horizontal
         self.rect.x += self.vel_x
         self.rect.y += self.vel_y
@@ -50,9 +50,11 @@ class Player(pygame.sprite.Sprite):
         if keys[pygame.K_a]:
             self.vel_x = -self.speed
             self.current_animation = 'run'
+            self.facing_right = False
         elif keys[pygame.K_d]:
             self.vel_x = self.speed
             self.current_animation = 'run'
+            self.facing_right = True
         else:
             self.current_animation = 'idle'
 
@@ -72,4 +74,9 @@ class Player(pygame.sprite.Sprite):
         self.frame_index += self.aniamtion_speed
         if self.frame_index >= len(frames):
             self.frame_index = 0
-        self.image = frames[int(self.frame_index)]
+        image = frames[int(self.frame_index)]
+
+        if not self.facing_right:
+            image = pygame.transform.flip(image, True, False)
+
+        self.image = image
