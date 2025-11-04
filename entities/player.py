@@ -4,10 +4,11 @@ import os
 class Player(pygame.sprite.Sprite):
     def __init__(self, x, y):
         super().__init__()
+        self.scale_factor = 2.5
         self.animations = self.load_animations()
         self.current_animation = 'idle'
         self.frame_index = 0
-        self.aniamtion_speed = 0.15
+        self.animation_speed = 0.15
 
         self.image = self.animations[self.current_animation][self.frame_index]
         self.rect = self.image.get_rect(topleft=(x, y))
@@ -20,7 +21,7 @@ class Player(pygame.sprite.Sprite):
         self.gravity = 0.8
         self.on_ground = False
         self.facing_right = True
-        
+
     def load_animations(self):
         # Cargar imagenes para las animaciones
         animations =  {}
@@ -32,6 +33,7 @@ class Player(pygame.sprite.Sprite):
                 for  filename in sorted(os.listdir(folder)):
                     img_path = os.path.join(folder, filename)
                     image = pygame.image.load(img_path).convert_alpha()
+                    image = pygame.transform.scale_by(image, self.scale_factor)
                     frames.append(image)
                 animations[anim_name] = frames
         return animations
@@ -71,7 +73,7 @@ class Player(pygame.sprite.Sprite):
 
     def animate(self):
         frames = self.animations[self.current_animation]
-        self.frame_index += self.aniamtion_speed
+        self.frame_index += self.animation_speed
         if self.frame_index >= len(frames):
             self.frame_index = 0
         image = frames[int(self.frame_index)]
